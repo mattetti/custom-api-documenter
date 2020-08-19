@@ -1,4 +1,4 @@
-# custom-api-documenter a fork of @microsoft/api-documenter
+# @mattetti/custom-api-documenter a fork of @microsoft/api-documenter
 
 This tool can be used to generate an online API reference manual for your TypeScript library.
 It reads the *.api.json data files produced by [API Extractor](https://api-extractor.com/),

@@ -1,4 +1,4 @@
-# Change Log - custom-api-documenter
+# Change Log - @mattetti/custom-api-documenter
 
 ## 0.1.0 New markdown rendering with new file structures and HTML snippets
 
