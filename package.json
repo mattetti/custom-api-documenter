@@ -4,7 +4,7 @@
   "description": "Read JSON files from api-extractor, generate documentation pages",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mattetti/custom-api-documenter"
+    "url": "git+https://github.com/mattetti/custom-api-documenter.git"
   },
   "homepage": "https://api-extractor.com/",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "build": "gulp test --clean"
   },
   "bin": {
-    "api-documenter": "./bin/api-documenter"
+    "api-documenter": "bin/api-documenter"
   },
   "main": "lib/index.js",
   "typings": "dist/rollup.d.ts",
@@ -35,5 +35,12 @@
     "@types/resolve": "1.17.1",
     "gulp": "~4.0.2",
     "jest": "~25.4.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/mattetti/custom-api-documenter/issues"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "author": "Matt Aimonetti"
 }
