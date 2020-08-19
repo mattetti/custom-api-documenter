@@ -1,10 +1,10 @@
 {
-  "name": "@microsoft/api-documenter",
-  "version": "7.8.22",
+  "name": "custom-api-documenter",
+  "version": "0.1.0",
   "description": "Read JSON files from api-extractor, generate documentation pages",
   "repository": {
     "type": "git",
-    "url": "https://github.com/microsoft/rushstack/tree/master/apps/api-documenter"
+    "url": "https://github.com/mattetti/custom-api-documenter"
   },
   "homepage": "https://api-extractor.com/",
   "license": "MIT",
@@ -24,7 +24,6 @@
     "colors": "~1.2.1",
     "js-yaml": "~3.13.1",
     "resolve": "~1.17.0",
-    "doc-plugin-fluid": "file:../doc-plugin-fluid"
   },
   "devDependencies": {
     "@microsoft/rush-stack-compiler-3.5": "~0.8.2",
