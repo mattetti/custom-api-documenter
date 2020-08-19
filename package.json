@@ -8,6 +8,9 @@
   },
   "homepage": "https://api-extractor.com/",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "build": "gulp test --clean"
   },
