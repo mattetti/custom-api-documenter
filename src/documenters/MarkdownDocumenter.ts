@@ -1181,12 +1181,12 @@ export class MarkdownDocumenter {
                 break;
         }
 
-        this._frontMatter.members = new Map<string, string[]>();
+        this._frontMatter.members = new Map<string, Map<string, string>>();
 
         apiMembers.forEach(element => {
             if (element.displayName === "") { return }
-            if (!this._frontMatter.members[element.kind]) { this._frontMatter.members[element.kind] = [] }
-            this._frontMatter.members[element.kind].push(element.displayName);
+            if (!this._frontMatter.members[element.kind]) { this._frontMatter.members[element.kind] = {} }
+            this._frontMatter.members[element.kind][element.displayName] = this._getLinkFilenameForApiItem(element);
         });
 
         const pkg: ApiPackage | undefined = item.getAssociatedPackage();
@@ -1279,7 +1279,7 @@ export class MarkdownDocumenter {
         }
     }
 
-    private _getFilenameForApiItem(apiItem: ApiItem): string {
+    private _getFilenameForApiItem(apiItem: ApiItem, linkToMD?: boolean): string {
         if (apiItem.kind === ApiItemKind.Model) {
             return '/';
         }

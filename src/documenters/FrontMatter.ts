@@ -6,7 +6,7 @@ export class FrontMatter {
     public kind: ApiItemKind;
     public package: string;
     public summary?: string;
-    public members: Map<string, string[]>
+    public members: Map<string, Map<string, string>>
 
     public toString(): string {
         const str: StringBuilder = new StringBuilder();
