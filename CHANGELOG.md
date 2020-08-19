@@ -1,5 +1,7 @@
 # Change Log - @mattetti/custom-api-documenter
 
+## 0.2.0 Supports passing the path to a config file using --config + turning off YAML generation
+
 ## 0.1.0 New markdown rendering with new file structures and HTML snippets
 
 

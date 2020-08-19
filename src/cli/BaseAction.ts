@@ -14,13 +14,16 @@ import {
   ApiDocumentedItem,
   IResolveDeclarationReferenceResult
 } from '@microsoft/api-extractor-model';
+import { DocumenterConfig } from '../documenters/DocumenterConfig';
 
 export abstract class BaseAction extends CommandLineAction {
   protected inputFolder: string;
   protected outputFolder: string;
+  protected configPath: string;
 
   private _inputFolderParameter: CommandLineStringParameter;
   private _outputFolderParameter: CommandLineStringParameter;
+  private _configPathParameter: CommandLineStringParameter;
 
   protected onDefineParameters(): void {
     // override
@@ -42,6 +45,19 @@ export abstract class BaseAction extends CommandLineAction {
         ` ANY EXISTING CONTENTS WILL BE DELETED!` +
         ` If omitted, the default is "./${this.actionName}"`
     });
+
+    this._configPathParameter = this.defineStringParameter({
+      parameterLongName: '--config',
+      parameterShortName: '-c',
+      argumentName: 'CONFIG',
+      description:
+        `Specifies the the path to the config file used by the generator.` +
+        ` If omitted, the default is "${DocumenterConfig.FILENAME}"`
+    });
+  }
+
+  protected setConfigPath(): void {
+    this.configPath = this._configPathParameter.value || DocumenterConfig.FILENAME;
   }
 
   protected buildApiModel(): ApiModel {
@@ -54,6 +70,8 @@ export abstract class BaseAction extends CommandLineAction {
 
     this.outputFolder = this._outputFolderParameter.value || `./${this.actionName}`;
     FileSystem.ensureFolder(this.outputFolder);
+
+    this.setConfigPath();
 
     for (const filename of FileSystem.readFolder(this.inputFolder)) {
       if (filename.match(/\.api\.json$/i)) {

@@ -16,18 +16,17 @@ export class GenerateAction extends BaseAction {
   public constructor(parser: ApiDocumenterCommandLine) {
     super({
       actionName: 'generate',
-      summary: 'EXPERIMENTAL',
+      summary: 'generate markdown documentation based on a config file',
       documentation:
-        'EXPERIMENTAL - This action is a prototype of a new config file driven mode of operation for' +
-        ' API Documenter.  It is not ready for general usage yet.  Its design may change in the future.'
+        'Config file driven mode of operation for API Documenter' +
+        ' Set --config --input-folder and --output-folder.'
     });
   }
 
   protected onExecute(): Promise<void> {
     // override
-    // Look for the config file under the current folder
-
-    let configFilePath: string = path.join(process.cwd(), DocumenterConfig.FILENAME);
+    this.setConfigPath();
+    let configFilePath: string = path.join(process.cwd(), this.configPath);
 
     // First try the current folder
     if (!FileSystem.exists(configFilePath)) {
