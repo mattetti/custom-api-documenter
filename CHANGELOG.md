@@ -1,5 +1,7 @@
 # Change Log - @mattetti/custom-api-documenter
 
+## 0.3.2 Fix a bug where frontmatters weren't cleared in between pages
+
 ## 0.3.1 Fix the summary frontmatter information (package & interface level information was wrong)
 
 ## 0.3.0 Provide uris for members in the frontmatter

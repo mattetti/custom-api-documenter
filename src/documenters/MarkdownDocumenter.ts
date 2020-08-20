@@ -117,7 +117,6 @@ export class MarkdownDocumenter {
         if (this._pluginLoader.markdownDocumenterFeature) {
             this._pluginLoader.markdownDocumenterFeature.onFinished({});
         }
-        this._writeIndex(this._apiModel);
     }
 
     private _writeApiItemPage(apiItem: ApiItem, output?: DocSection | DocParagraph): void {
@@ -130,6 +129,7 @@ export class MarkdownDocumenter {
             this._writeBreadcrumb(output, apiItem);
         }
         if (this._shouldHaveStandalonePage(apiItem)) {
+            this._frontMatter = new FrontMatter();
             this._currentApiItemPage = apiItem;
         }
 
@@ -431,14 +431,6 @@ export class MarkdownDocumenter {
                 }
             }
         }
-    }
-
-    private _writeIndex(apiItem: ApiItem): void {
-        // const indexPath: string = path.join(this._outputFolder, '_index.md');
-        // const output: StringBuilder = new StringBuilder();
-        // output.append(`---\nTitle: API Reference\n---\n\n`);
-        // // TODO:
-        // FileSystem.writeFile(indexPath, output.toString());
     }
 
     /**
@@ -1195,7 +1187,6 @@ export class MarkdownDocumenter {
         }
 
         this._frontMatter.members = new Map<string, Map<string, string>>();
-
         apiMembers.forEach(element => {
             if (element.displayName === "") { return }
             if (!this._frontMatter.members[element.kind]) { this._frontMatter.members[element.kind] = {} }
