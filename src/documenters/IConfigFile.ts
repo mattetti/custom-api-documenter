@@ -1,20 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT license.
 // See LICENSE in the project root for license information.
-
-import { IYamlTocFile } from '../yaml/IYamlTocFile';
-
 /**
  * Typescript interface describing the config schema for toc.yml file format.
  */
 export interface IConfigTableOfContents {
-    /**
-     * Represents the tree structure describing the toc.file format.
-     * Nodes that have an empty `items` array property or their name will be included in the
-     * {@link IConfigTableOfContents.nonEmptyCategoryNodeNames} will be filled with API items
-     * that are matched with the filters provided. Everything else will be placed under
-     * {@link IConfigTableOfContents.catchAllCategory} if provided, which is highly recommended.
-     */
-    tocConfig: IYamlTocFile;
 
     /**
      * Optional category name that is recommended to be included along with

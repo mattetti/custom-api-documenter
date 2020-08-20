@@ -6,7 +6,6 @@ import * as path from 'path';
 import { ApiDocumenterCommandLine } from './ApiDocumenterCommandLine';
 import { BaseAction } from './BaseAction';
 import { DocumenterConfig } from '../documenters/DocumenterConfig';
-import { ExperimentalYamlDocumenter } from '../documenters/ExperimentalYamlDocumenter';
 
 import { ApiModel } from '@microsoft/api-extractor-model';
 import { FileSystem } from '@rushstack/node-core-library';
@@ -47,11 +46,7 @@ export class GenerateAction extends BaseAction {
       const markdownDocumenter: MarkdownDocumenter = new MarkdownDocumenter(apiModel, documenterConfig);
       markdownDocumenter.generateFiles(this.outputFolder);
     } else {
-      const yamlDocumenter: ExperimentalYamlDocumenter = new ExperimentalYamlDocumenter(
-        apiModel,
-        documenterConfig
-      );
-      yamlDocumenter.generateFiles(this.outputFolder);
+      throw new Error(`output target ${documenterConfig.configFile.outputTarget} is not supported in this version of api-documenter.`);
     }
 
     return Promise.resolve();
