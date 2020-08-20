@@ -1,5 +1,7 @@
 # Change Log - @mattetti/custom-api-documenter
 
+## 0.3.1 Fix the summary frontmatter information (package & interface level information was wrong)
+
 ## 0.3.0 Provide uris for members in the frontmatter
 
 ## 0.2.0 Supports passing the path to a config file using --config + turning off YAML generation

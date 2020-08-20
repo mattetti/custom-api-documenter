@@ -1151,24 +1151,33 @@ export class MarkdownDocumenter {
         this._frontMatter.kind = item.kind;
         this._frontMatter.title = item.displayName.replace(/"/g, '').replace(/!/g, '');
         let apiMembers: ReadonlyArray<ApiItem> = item.members;
+        const mdEmitter = this._markdownEmitter;
+
+        var extractSummary = function (docComment: DocComment): string {
+            const tmpStrBuilder: StringBuilder = new StringBuilder();
+            const summary: DocSection = docComment!.summarySection;
+            mdEmitter.emit(tmpStrBuilder, summary, {
+                contextApiItem: item,
+                onGetFilenameForApiItem: (apiItemForFilename: ApiItem) => {
+                    return this._getLinkFilenameForApiItem(apiItemForFilename);
+                }
+            });
+            return tmpStrBuilder.toString().replace(/"/g, "'").trim();
+        }
         switch (item.kind) {
             case ApiItemKind.Class:
                 const classItem: ApiClass = item as ApiClass;
                 if (classItem.tsdocComment) {
-                    const tmpStrBuilder: StringBuilder = new StringBuilder();
-                    const summary: DocSection = classItem.tsdocComment!.summarySection;
-                    this._markdownEmitter.emit(tmpStrBuilder, summary, {
-                        contextApiItem: item,
-                        onGetFilenameForApiItem: (apiItemForFilename: ApiItem) => {
-                            return this._getLinkFilenameForApiItem(apiItemForFilename);
-                        }
-                    });
-                    this._frontMatter.summary = tmpStrBuilder.toString().replace(/"/g, "'").trim();
+                    this._frontMatter.summary = extractSummary(classItem.tsdocComment);
                 }
                 this._frontMatter.title += " Class"
                 break;
             case ApiItemKind.Interface:
                 this._frontMatter.title += " Interface"
+                const interfaceItem: ApiInterface = item as ApiInterface;
+                if (interfaceItem.tsdocComment) {
+                    this._frontMatter.summary = extractSummary(interfaceItem.tsdocComment);
+                }
                 break
             case ApiItemKind.Package:
                 this._frontMatter.title += " Package"
@@ -1176,6 +1185,10 @@ export class MarkdownDocumenter {
                     item.kind === ApiItemKind.Package
                         ? (item as ApiPackage).entryPoints[0].members
                         : (item as ApiNamespace).members;
+                const pkgItem: ApiPackage = item as ApiPackage;
+                if (pkgItem.tsdocComment) {
+                    this._frontMatter.summary = extractSummary(pkgItem.tsdocComment);
+                }
                 break
             default:
                 break;
