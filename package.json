@@ -1,6 +1,6 @@
 {
   "name": "@mattetti/custom-api-documenter",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Read JSON files from api-extractor, generate documentation pages",
   "repository": {
     "type": "git",

@@ -1,5 +1,7 @@
 # Change Log - @mattetti/custom-api-documenter
 
+## 0.3.3 Don't escape Markdown headers and clean code examples by removing the last empty line
+
 ## 0.3.2 Fix a bug where frontmatters weren't cleared in between pages
 
 ## 0.3.1 Fix the summary frontmatter information (package & interface level information was wrong)
