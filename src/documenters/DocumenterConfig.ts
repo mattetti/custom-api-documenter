@@ -28,7 +28,7 @@ export class DocumenterConfig {
     /**
      * Specifies how packages must start to be included, so non matching package names are excluded.
      */
-    public onlyPackagesStartingWith?: string;
+    public onlyPackagesStartingWith?: string | string[];
 
     /**
      * The JSON Schema for API Extractor config file (api-extractor.schema.json).
