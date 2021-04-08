@@ -1387,12 +1387,7 @@ export class MarkdownDocumenter {
             if (typeof config.onlyPackagesStartingWith === "string") {
                 return pkg.name.startsWith(config.onlyPackagesStartingWith);
             } else {
-                for (const prefix of config.onlyPackagesStartingWith) {
-                    if (pkg.name.startsWith(prefix)) {
-                        return true;
-                    }
-                }
-                return false;
+                return config.onlyPackagesStartingWith.some((prefix) => pkg.name.startsWith(prefix));
             }
         }
         return true;
