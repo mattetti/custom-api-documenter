@@ -1145,7 +1145,7 @@ export class MarkdownDocumenter {
         let apiMembers: ReadonlyArray<ApiItem> = item.members;
         const mdEmitter = this._markdownEmitter;
 
-        var extractSummary = function (docComment: DocComment): string {
+        var extractSummary = (docComment: DocComment): string => {
             const tmpStrBuilder: StringBuilder = new StringBuilder();
             const summary: DocSection = docComment!.summarySection;
             mdEmitter.emit(tmpStrBuilder, summary, {
