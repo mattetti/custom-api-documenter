@@ -1382,8 +1382,13 @@ export class MarkdownDocumenter {
     }
 
     private _isAllowedPackage(pkg: ApiPackage): boolean {
-        if (this._documenterConfig && this._documenterConfig!.onlyPackagesStartingWith) {
-            return pkg.name.startsWith(this._documenterConfig!.onlyPackagesStartingWith)
+        const config = this._documenterConfig;
+        if (config && config.onlyPackagesStartingWith) {
+            if (typeof config.onlyPackagesStartingWith === "string") {
+                return pkg.name.startsWith(config.onlyPackagesStartingWith);
+            } else {
+                return config.onlyPackagesStartingWith.some((prefix) => pkg.name.startsWith(prefix));
+            }
         }
         return true;
     }

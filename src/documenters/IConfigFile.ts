@@ -84,7 +84,7 @@ export interface IConfigFile {
     /**
      * Specifies how packages must start to be included, so non matching package names are excluded.
      */
-    onlyPackagesStartingWith?: string;
+    onlyPackagesStartingWith?: string | string[];
 
     /**
      * This enables an experimental feature that will be officially released with the next major version
