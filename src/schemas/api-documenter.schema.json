@@ -32,7 +32,7 @@
     },
     "onlyPackagesStartingWith": {
       "description": "Specifies how packages must start to be included, so non matching package names are excluded.",
-      "type": "array",
+      "type": ["string", "array"],
       "default": ""
     },
     "newDocfxNamespaces": {
